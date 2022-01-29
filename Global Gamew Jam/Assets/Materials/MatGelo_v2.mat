@@ -49,21 +49,22 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Contrast: 0.7
-    - _FresnelPower: 2.17
-    - _IceNormalStrenght: 1.26
+    - _FresnelPower: 1.73
+    - _IceNormalStrenght: 1.5
     - _Metallic: 0.281
-    - _Normals: 0.68
-    - _RefractionAmount: 0.39
-    - _Smoothness: 1
-    - _SnowGlossStrenght: 2
+    - _Normals: -1.06
+    - _Opacity: 0.75
+    - _RefractionAmount: -0.48
+    - _Smoothness: 0.816
+    - _SnowGlossStrenght: 4.21
     - _SnowLevel: 0.14
-    - _SnowNormalStrenght: -0.62
-    - _UpValue: 0.094
+    - _SnowNormalStrenght: 1.37
+    - _UpValue: 0.07
     m_Colors:
-    - Color_db8587e73ceb47cf892561090c56f625: {r: 3.7204347, g: 4.5358725, b: 4.867144, a: 0}
+    - Color_db8587e73ceb47cf892561090c56f625: {r: 17.09463, g: 20.841398, b: 22.363522, a: 0}
     - Vector3_bf1b1c48e9c34ff59ec080bcf47724fa: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 1.8039216, g: 2.164706, b: 2.9960785, a: 0}
+    - _Color: {r: 1.2755651, g: 1.5306783, b: 2.1185474, a: 0}
     - _IceTilling: {r: 2, g: 0.5, b: 0, a: 0}
-    - _SnowColor: {r: 4.404779, g: 5.245385, b: 6.4222345, a: 1}
+    - _SnowColor: {r: 5.098387, g: 6.06399, b: 7.3772106, a: 1}
     - _SnowOffset: {r: 0, g: 180, b: 0, a: 0}
   m_BuildTextureStacks: []
