@@ -15,7 +15,7 @@ public class PlataformaEspecial : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    private void Start()
     {
         ControladorGeloFogo.instance.plataformas.Add(this);
         Ativa(fogo == ControladorGeloFogo.instance.VersaoFogo);

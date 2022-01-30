@@ -294,7 +294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   altura: 18
   paoBase: {fileID: 7203899618631907566}
-  dificuldade: 1
+  dificuldade: 0
 --- !u!1 &7203899620564840568
 GameObject:
   m_ObjectHideFlags: 0

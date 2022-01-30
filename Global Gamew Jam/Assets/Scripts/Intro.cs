@@ -40,8 +40,9 @@ public class Intro : MonoBehaviour
 
         if(Input.GetButtonDown("Pulo"))
         {
-            Destroy(text.gameObject);
+            text.gameObject.SetActive(false);
             LeanTween.alpha(this.gameObject.GetComponent<Image>().rectTransform, 0f, 4f).setEase(LeanTweenType.linear);
+            HUDManager.hUDManager.termoObject.SetActive(true);
         }
 
         if(this.gameObject.GetComponent<Image>().color.a == 0f)

@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Procedural.unity
     guid: 853a3ee8c88109c479dc18f3b4de4f28
+  - enabled: 1
+    path: Assets/Scenes/Interface.unity
+    guid: e374f97f1eacac14abe26561842c4232
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 40045094cb254204c9838654ef1f7fc1, type: 2}

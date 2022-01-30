@@ -9,6 +9,7 @@ public class Personagem : MonoBehaviour
     public GameObject modelo;
     public float modTempe = 3f;
     public MeshRenderer meshTermometro;
+    public Anim anim;
 
     private CharacterController character;
     private bool pulou, pulouDuplo, emParede, olhandoDireita=true;
@@ -54,7 +55,7 @@ public class Personagem : MonoBehaviour
             if(temperatura>1)
             {
                 print("Quente");
-                meshTermometro.material.color = new Color(0.9f, 0.9f-(temperatura/16), 0.9f-(temperatura/14));
+                //meshTermometro.material.color = new Color(0.9f, 0.9f-(temperatura/16), 0.9f-(temperatura/14));
                 if (temperatura > 8)
                 {
                     print("Quente demais");
@@ -64,7 +65,7 @@ public class Personagem : MonoBehaviour
             else if(temperatura<-1)
             {
                 print("Frio");
-                meshTermometro.material.color = new Color(0.9f-(Mathf.Abs(temperatura)/14), 0.9f-(Mathf.Abs(temperatura)/16), 0.9f);
+                //meshTermometro.material.color = new Color(0.9f-(Mathf.Abs(temperatura)/14), 0.9f-(Mathf.Abs(temperatura)/16), 0.9f);
                 if (temperatura<-8)
                 {
                     print("Frio demais");
@@ -74,7 +75,7 @@ public class Personagem : MonoBehaviour
             else
             {
                 print("Morno");
-                meshTermometro.material.color = new Color(0.9f, 0.9f, 0.9f);
+                //meshTermometro.material.color = new Color(0.9f, 0.9f, 0.9f);
             }
         }
     }
@@ -83,7 +84,7 @@ public class Personagem : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         //No futuro, o bool de "fogo" indicará se a anim/vfx de morte por calor ou por frio deverá tocar
-        ControladorJogo.instance.CarregaCena("Implementacao");
+        //HUDManager.hUDManager.gameOver();
 
     }
 
@@ -223,6 +224,8 @@ public class Personagem : MonoBehaviour
 
     private void EntradaIdle()
     {
+        anim.ChamaAnim("Idle");
+
         pulou = false;
         pulouDuplo = false;
         character.height = alturaOriginal;
@@ -284,6 +287,8 @@ public class Personagem : MonoBehaviour
 
     private void EntradaAnda()
     {
+        anim.ChamaAnim("Anda");
+
         pulou = false;
         pulouDuplo = false;
         dirMovimento.y = 0;
@@ -334,6 +339,7 @@ public class Personagem : MonoBehaviour
 
     private void EntradaPula()
     {
+        anim.ChamaAnim("Pula");
         timerPuloAtual = 0;
         //character.height = alturaOriginal * 0.5f;
         ControladorGeloFogo.instance.IntensificaPrevisao(true);
@@ -396,6 +402,7 @@ public class Personagem : MonoBehaviour
 
     private void EntradaQueda()
     {
+        anim.ChamaAnim("Queda");
         timerQuedaAtual = 0f;
         ControladorGeloFogo.instance.IntensificaPrevisao(true);
         //character.height = alturaOriginal * 0.5f;
@@ -439,6 +446,7 @@ public class Personagem : MonoBehaviour
 
     private void EntradaPuloDuplo()
     {
+        anim.ChamaAnim("PuloDuplo");
         pulouDuplo = true;
         //character.height = alturaOriginal * 0.5f;
         timerPuloAtual = 0;
@@ -493,6 +501,7 @@ public class Personagem : MonoBehaviour
 
     private void EntradaEmParede()
     {
+        anim.ChamaAnim("EmParede");
         timerQuedaAtual = 0;
         ControladorGeloFogo.instance.IntensificaPrevisao(true);
     }

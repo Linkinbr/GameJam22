@@ -62,9 +62,11 @@
     <Compile Include="Assets\Scripts\Intro.cs" />
     <Compile Include="Assets\Scripts\Personagem.cs" />
     <Compile Include="Assets\Scripts\Camera.cs" />
+    <Compile Include="Assets\Scripts\Procedural\Sanduiche.cs" />
     <Compile Include="Assets\Scripts\DiaryObject.cs" />
     <Compile Include="Assets\Scripts\ControladorGeloFogo.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTDescrOptional.cs" />
+    <Compile Include="Assets\Scripts\Procedural\ControladorFase.cs" />
     <Compile Include="Assets\Scripts\TriggerAtravessaPlataforma.cs" />
     <Compile Include="Assets\Scripts\ZonaDaMorte.cs" />
     <Compile Include="Assets\Scripts\TriggerMuroPulavel.cs" />
@@ -76,8 +78,11 @@
     <Compile Include="Assets\Scripts\HUDManager.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTest.cs" />
     <Compile Include="Assets\Scripts\Calc.cs" />
-    <Compile Include="Assets\Scripts\Procedural\Sanduiche.cs" />
-    <Compile Include="Assets\Scripts\Procedural\ControladorFase.cs" />
+    <Compile Include="Assets\Scripts\Anim.cs" />
+    <Compile Include="Assets\Scripts\AudioManager.cs" />
+    <Compile Include="Assets\ElementalMeters\Scripts\MeterButtons.cs" />
+    <Compile Include="Assets\ElementalMeters\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\ElementalMeters\Scripts\MeterScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

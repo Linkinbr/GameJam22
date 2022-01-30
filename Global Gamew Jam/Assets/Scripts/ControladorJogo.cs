@@ -25,8 +25,9 @@ public class ControladorJogo : MonoBehaviour
 
     }
 
-    public void CarregaCena(string nome)
+    public void recarregaCenas()
     {
-        SceneManager.LoadScene(nome);
+        SceneManager.LoadSceneAsync("Procedural", LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync("Interface", LoadSceneMode.Additive);
     }
 }

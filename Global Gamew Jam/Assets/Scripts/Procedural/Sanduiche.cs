@@ -15,7 +15,6 @@ public class Sanduiche : MonoBehaviour
 
     /// <summary>Distancia entre este objeto (pai e pão de cima) e a base do sanduiche (filho e pão de baixo) </summary>
     public float altura;
-    private bool jogadorPassou;
     public GameObject paoBase;
 
     public DIFICULDADE dificuldade;
@@ -32,8 +31,6 @@ public class Sanduiche : MonoBehaviour
 
     public void ReativaModulos()
     {
-        jogadorPassou = false;
-        gameObject.SetActive(true);
         foreach(GameObject go in modulos)
         {
             go.SetActive(true);
@@ -42,10 +39,9 @@ public class Sanduiche : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!jogadorPassou && other.TryGetComponent<Personagem>(out Personagem p))
+        if (other.TryGetComponent<Personagem>(out Personagem p))
         {
-            jogadorPassou = true;
-            ControladorFase.instance.ChecaProgresso(transform.position);
+            //TODO: Marcar progresso, exigir novo sanduiche, etc
         }
         else if (other.tag == "ZonaDaMorte")
         {

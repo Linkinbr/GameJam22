@@ -44,7 +44,8 @@ public class ZonaDaMorte : MonoBehaviour
     {
         if(collision.collider.TryGetComponent<Personagem>(out Personagem f))
         {
-            ControladorJogo.instance.CarregaCena("Procedural");
+            //ControladorJogo.instance.CarregaCena("Procedural");
+            HUDManager.hUDManager.gameOver();
         }
         else
         {
