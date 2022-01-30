@@ -25,9 +25,10 @@ public class PlataformaEspecial : MonoBehaviour
         }
     }
 
-    public void Intensifica(bool value)
+    private void Start()
     {
-
+        ControladorGeloFogo.instance.plataformas.Add(this);
+        Ativa(fogo == ControladorGeloFogo.instance.VersaoFogo);
     }
 
     public void Ativa(bool value)
@@ -36,12 +37,12 @@ public class PlataformaEspecial : MonoBehaviour
         {
             print("Ativou " + name);
             mesh.material = matBase;
-            colisor.enabled = true;
+            //colisor.enabled = true;
         }
         else
         {
             print("Desativou" + name);
-            colisor.enabled = false;
+            //colisor.enabled = false;
 
             if(fogo)
             {
@@ -52,5 +53,26 @@ public class PlataformaEspecial : MonoBehaviour
                 mesh.material = ControladorGeloFogo.instance.matGelo;
             }
         }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.collider.TryGetComponent<Personagem>(out Personagem p))
+        {
+            p.Temperatura += fogo ? p.modTempe * Time.deltaTime : -Time.deltaTime * p.modTempe;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.TryGetComponent<Personagem>(out Personagem p))
+        {
+            p.Temperatura += fogo ? 1.5f : -1.5f;
+        }
+    }
+
+    private void OnDisable()
+    {
+        ControladorGeloFogo.instance.plataformas.Remove(this);
     }
 }
