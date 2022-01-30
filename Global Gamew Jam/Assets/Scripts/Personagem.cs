@@ -300,8 +300,19 @@ public class Personagem : MonoBehaviour
     #region StatePula 2
     private void ComportamentoPula()
     {
+        if (Input.GetButton("Horizontal"))
+        {
+            if (Input.GetButton("Direita"))
+            {
+                Vira('d');
+            }
+            else
+            {
+                Vira('e');
+            }
+        }
 
-        if(Input.GetButtonDown("Pulo"))
+        if (Input.GetButtonDown("Pulo"))
         {
             print("Pulou duplo de pulo");
             Estado = 4; //PuloDuplo
@@ -338,7 +349,19 @@ public class Personagem : MonoBehaviour
     #region StateQueda 3
     private void ComportamentoQueda()
     {
-        if(timerQuedaAtual<=0.15f && Input.GetButtonDown("Pulo") && !pulou)
+        if (Input.GetButton("Horizontal"))
+        {
+            if (Input.GetButton("Direita"))
+            {
+                Vira('d');
+            }
+            else
+            {
+                Vira('e');
+            }
+        }
+
+        if (timerQuedaAtual<=0.15f && Input.GetButtonDown("Pulo") && !pulou)
         {
             Estado = 2; //Pulo
         }
@@ -387,6 +410,18 @@ public class Personagem : MonoBehaviour
     #region StatePuloDuplo 4
     private void ComportamentoPuloDuplo()
     {
+        if (Input.GetButton("Horizontal"))
+        {
+            if (Input.GetButton("Direita"))
+            {
+                Vira('d');
+            }
+            else
+            {
+                Vira('e');
+            }
+        }
+
         //OBS: Metade da duração do pulo normal.
         if (timerPuloAtual < duracaoMaxPulo*0.5f && Input.GetButton("Pulo"))
         {
@@ -419,7 +454,7 @@ public class Personagem : MonoBehaviour
     #region StateEmParede 5
     private void ComportamentoEmParede()
     {
-        if(Input.GetButtonDown("Pulo"))
+        if (Input.GetButtonDown("Pulo"))
         {
             if(!pulou)
             {
@@ -474,11 +509,11 @@ public class Personagem : MonoBehaviour
         Comportamento();
         if(temperatura>0.3f)
         {
-            Temperatura -= modTempe * 0.2f * Time.deltaTime;
+            Temperatura -= modTempe * 0.4f * Time.deltaTime;
         }
         else if(temperatura<-0.3f)
         {
-            Temperatura += modTempe * 0.2f * Time.deltaTime;
+            Temperatura += modTempe * 0.4f * Time.deltaTime;
         }
     }
 

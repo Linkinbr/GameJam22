@@ -70,4 +70,9 @@ public class PlataformaEspecial : MonoBehaviour
             p.Temperatura += fogo ? 1.5f : -1.5f;
         }
     }
+
+    private void OnDisable()
+    {
+        ControladorGeloFogo.instance.plataformas.Remove(this);
+    }
 }

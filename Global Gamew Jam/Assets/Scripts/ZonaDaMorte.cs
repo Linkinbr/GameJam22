@@ -46,7 +46,7 @@ public class ZonaDaMorte : MonoBehaviour
         }
         else
         {
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
         }
     }
 
