@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637791502545288462
+      ticks: 637791613042641630
     m_Hash: 1103407622
   m_LockFileStatus:
     m_FilePath: D:/Projetos/Estudos/GlobalGameJam_2022/GameJam22/Global Gamew Jam/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637791502546687406
+      ticks: 637791613043311806
     m_Hash: 1063818047
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
