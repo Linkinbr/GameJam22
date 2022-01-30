@@ -10,7 +10,7 @@ public class ControladorGeloFogo : MonoBehaviour
     public float modIntensidade=2f;
 
     private float opacidadeBaseFogo, opacidadeBaseGelo;
-    private bool versaoFogo, previsaoIntensificada;
+    private bool versaoFogo=true, previsaoIntensificada;
     private void Awake()
     {
         if (!instance)
@@ -18,8 +18,8 @@ public class ControladorGeloFogo : MonoBehaviour
         else
             Destroy(gameObject);
 
-        opacidadeBaseFogo = 0.3f;
-        opacidadeBaseGelo = 0.3f;
+        opacidadeBaseFogo = 0.125f;
+        opacidadeBaseGelo = 0.125f;
     }
 
     private void Start()
@@ -28,6 +28,18 @@ public class ControladorGeloFogo : MonoBehaviour
         {
             print("Plat " + name + "é fogo?" + plat.fogo + ". Versão fogo atual é " + versaoFogo);
             plat.Ativa(plat.fogo == versaoFogo);
+        }
+
+        //Layer 3 é Personagem, 6 é Fogo, 7 é Gelo
+        if(VersaoFogo)
+        {
+            Physics.IgnoreLayerCollision(3, 7);
+            Physics.IgnoreLayerCollision(3, 6, false);
+        }
+        else
+        {
+            Physics.IgnoreLayerCollision(3, 6);
+            Physics.IgnoreLayerCollision(3, 7, false);
         }
     }
 
@@ -45,9 +57,24 @@ public class ControladorGeloFogo : MonoBehaviour
     public void TrocaVersao()
     {
         versaoFogo = !versaoFogo;
+        if(ZonaDaMorte.instance)
+        ZonaDaMorte.instance.TrocaVersao(VersaoFogo);
+        
         foreach (PlataformaEspecial plat in plataformas)
         {
             plat.Ativa(plat.fogo == versaoFogo);
+        }
+
+        //Layer 3 é Personagem, 6 é Fogo, 7 é Gelo
+        if (VersaoFogo)
+        {
+            Physics.IgnoreLayerCollision(3, 7);
+            Physics.IgnoreLayerCollision(3, 6, false);
+        }
+        else
+        {
+            Physics.IgnoreLayerCollision(3, 6);
+            Physics.IgnoreLayerCollision(3, 7, false);
         }
     }
 

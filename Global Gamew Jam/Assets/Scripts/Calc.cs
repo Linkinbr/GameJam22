@@ -49,6 +49,11 @@ public static class Calc
         return offSet + (4 * X - 4 * Mathf.Pow(X, 2));
     }
 
+    public static float CurvaParabolaAcel(float X)
+    {
+        return X > 1 ? 1 : X*X;
+    }
+
     public static float RetaDecrescente(float X)
     {
         return X>1? 0.5f : -X + 1.5f;

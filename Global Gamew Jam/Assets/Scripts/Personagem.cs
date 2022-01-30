@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Personagem : MonoBehaviour
 {
-    public float velAnda = 6.25f, velPulo =3.5f, velQueda = -2f, temperatura, duracaoMaxPulo = 0.6f;
+    public float velAnda = 6.25f, velPulo =10f, velQueda = -8f, duracaoMaxPulo = 0.3625f, duracaoQuedaAcel=0.8f;
     public Vector3 dirMovimento;
     public GameObject modelo;
+    public float modTempe = 3f;
+    public MeshRenderer meshTermometro;
 
     private CharacterController character;
-    private bool pulou, pulouDuplo, olhandoDireita=true;
-    private float timerPuloAtual, timerQuedaAtual, alturaOriginal;
+    private bool pulou, pulouDuplo, emParede, olhandoDireita=true;
+    private float timerPuloAtual, timerQuedaAtual, alturaOriginal, temperatura;
     private int estado;
 
     private void Awake()
@@ -37,6 +39,61 @@ public class Personagem : MonoBehaviour
         {
             olhandoDireita = false;
             modelo.transform.Rotate(new Vector3(0, -180, 0));
+        }
+    }
+
+    public float Temperatura
+    {
+        get { return temperatura; }
+        set
+        {
+            //Mudanças de interface nessas chaves (lugar específico dependende)
+
+            temperatura = value;
+            print("Value novo = " + temperatura);
+            if(temperatura>1)
+            {
+                print("Quente");
+                meshTermometro.material.color = new Color(0.9f, 0.9f-(temperatura/16), 0.9f-(temperatura/14));
+                if (temperatura > 8)
+                {
+                    print("Quente demais");
+                    StartCoroutine(Morte(true));
+                }
+            }
+            else if(temperatura<-1)
+            {
+                print("Frio");
+                meshTermometro.material.color = new Color(0.9f-(Mathf.Abs(temperatura)/14), 0.9f-(Mathf.Abs(temperatura)/16), 0.9f);
+                if (temperatura<-8)
+                {
+                    print("Frio demais");
+                    StartCoroutine(Morte(false));
+                }
+            }
+            else
+            {
+                print("Morno");
+                meshTermometro.material.color = new Color(0.9f, 0.9f, 0.9f);
+            }
+        }
+    }
+
+    private IEnumerator Morte(bool fogo)
+    {
+        yield return new WaitForEndOfFrame();
+        //No futuro, o bool de "fogo" indicará se a anim/vfx de morte por calor ou por frio deverá tocar
+        ControladorJogo.instance.CarregaCena("Implementacao");
+
+    }
+
+    public void EmParede(bool value)
+    {
+        emParede = value;
+        if(emParede)
+        {
+            pulou = false;
+            pulouDuplo = false;
         }
     }
 
@@ -85,6 +142,10 @@ public class Personagem : MonoBehaviour
                 print("Entrou PuloDuplo");
                 EntradaPuloDuplo();
                 break;
+            case 5:
+                print("Entrou PresoEmParede");
+                EntradaEmParede();
+                break;
         }
     }
 
@@ -107,6 +168,9 @@ public class Personagem : MonoBehaviour
             case 4:
                 ComportamentoPuloDuplo();
                 break;
+            case 5:
+                ComportamentoEmParede();
+                break;
         }
     }
 
@@ -128,6 +192,9 @@ public class Personagem : MonoBehaviour
                 break;
             case 4:
                 SaidaPuloDuplo();
+                break;
+            case 5:
+                SaidaEmParede();
                 break;
         }
     }
@@ -157,9 +224,11 @@ public class Personagem : MonoBehaviour
     private void EntradaIdle()
     {
         pulou = false;
+        pulouDuplo = false;
         character.height = alturaOriginal;
         ControladorGeloFogo.instance.IntensificaPrevisao(false);
-        pulouDuplo = false;
+        dirMovimento.y = 0;
+        
     }
 
     private void SaidaIdle()
@@ -215,6 +284,8 @@ public class Personagem : MonoBehaviour
 
     private void EntradaAnda()
     {
+        pulou = false;
+        pulouDuplo = false;
         dirMovimento.y = 0;
         ControladorGeloFogo.instance.IntensificaPrevisao(false);
         character.height = alturaOriginal;
@@ -229,8 +300,10 @@ public class Personagem : MonoBehaviour
     #region StatePula 2
     private void ComportamentoPula()
     {
+
         if(Input.GetButtonDown("Pulo"))
         {
+            print("Pulou duplo de pulo");
             Estado = 4; //PuloDuplo
         }
         else if (timerPuloAtual < duracaoMaxPulo && Input.GetButton("Pulo"))
@@ -273,11 +346,21 @@ public class Personagem : MonoBehaviour
         {
             Estado = 4; //PuloDuplo
         }
+        else if(emParede)
+        {
+            Estado = 5; //EmParede
+        }
         else
         {
-            //Usa a duracaoMaxPulo só para criar arco perfeito com as curvas de aceleração/desaceleração, calma
-            dirMovimento.x = Input.GetAxis("Horizontal") * velAnda * Calc.RetaDecrescente(timerQuedaAtual/duracaoMaxPulo);
-            dirMovimento.y = Calc.RetaCrescente(timerQuedaAtual / duracaoMaxPulo) * velQueda;
+            dirMovimento.x = Input.GetAxis("Horizontal") * velAnda * Calc.RetaDecrescente(timerQuedaAtual/duracaoQuedaAcel);
+            dirMovimento.y = (0.05f + Calc.CurvaAcelSqrt(timerQuedaAtual / duracaoQuedaAcel)) * velQueda;
+
+            if (Input.GetButton("Baixo"))
+            {
+                dirMovimento.y *= 1.5f;
+            }
+            if (timerQuedaAtual > duracaoQuedaAcel)
+                dirMovimento.y *= 1.5f;
 
             character.Move(dirMovimento * Time.deltaTime);
             timerQuedaAtual += Time.deltaTime;
@@ -333,10 +416,70 @@ public class Personagem : MonoBehaviour
     }
     #endregion
 
+    #region StateEmParede 5
+    private void ComportamentoEmParede()
+    {
+        if(Input.GetButtonDown("Pulo"))
+        {
+            if(!pulou)
+            {
+                Estado = 2; //Pulo
+                return;
+            }
+            else if(!pulouDuplo)
+            {
+                Estado = 4; //PuloDuplo
+                return;
+            }
+        }
+
+        dirMovimento.x = Input.GetAxis("Horizontal") * velAnda;
+        dirMovimento.y = Calc.CurvaAcelSqrt(timerQuedaAtual / duracaoQuedaAcel*2f) * velQueda* 0.5f;
+
+        if (Input.GetButton("Baixo"))
+        {
+            dirMovimento.y *= 1.5f;
+        }
+        if (timerQuedaAtual > duracaoQuedaAcel*2f)
+            dirMovimento.y *= 1.25f;
+
+        character.Move(dirMovimento * Time.deltaTime);
+        timerQuedaAtual += Time.deltaTime;
+
+        if (character.isGrounded)
+        {
+            Estado = 0; //Idle
+        }
+        else if(!emParede)
+        {
+            Estado=3; //Queda
+        }
+    }
+
+    private void EntradaEmParede()
+    {
+        timerQuedaAtual = 0;
+        ControladorGeloFogo.instance.IntensificaPrevisao(true);
+    }
+
+    private void SaidaEmParede()
+    {
+        
+    }
+    #endregion
+
     // Update is called once per frame
     void Update()
     {
         Comportamento();
+        if(temperatura>0.3f)
+        {
+            Temperatura -= modTempe * 0.2f * Time.deltaTime;
+        }
+        else if(temperatura<-0.3f)
+        {
+            Temperatura += modTempe * 0.2f * Time.deltaTime;
+        }
     }
 
 }

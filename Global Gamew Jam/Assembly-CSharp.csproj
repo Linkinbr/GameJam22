@@ -53,11 +53,17 @@
     <UnityVersion>2020.3.26f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\PlataformaEspecial.cs" />
+    <Compile Include="Assets\Scripts\Personagem.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Calc.cs" />
-    <Compile Include="Assets\Scripts\Personagem.cs" />
     <Compile Include="Assets\Scripts\ControladorGeloFogo.cs" />
-    <Compile Include="Assets\Scripts\PlataformaEspecial.cs" />
+    <Compile Include="Assets\Scripts\Camera.cs" />
+    <Compile Include="Assets\Scripts\TriggerDePlataforma.cs" />
+    <Compile Include="Assets\Scripts\TriggerAtravessaPlataforma.cs" />
+    <Compile Include="Assets\Scripts\ZonaDaMorte.cs" />
+    <Compile Include="Assets\Scripts\ControladorJogo.cs" />
+    <Compile Include="Assets\Scripts\TriggerMuroPulavel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
