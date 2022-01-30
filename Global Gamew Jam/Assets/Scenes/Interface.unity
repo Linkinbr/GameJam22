@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17666504, g: 0.22113276, b: 0.30343652, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -277,6 +277,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 148045805}
   m_CullTransparentMesh: 1
+--- !u!1001 &159004181
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6207117013341044922, guid: 896f810578c14e142a1c237f4c6fbaa4, type: 3}
+      propertyPath: m_Name
+      value: CantoL_Duplo_Arco
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732824980906203648, guid: 896f810578c14e142a1c237f4c6fbaa4, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732824980906203648, guid: 896f810578c14e142a1c237f4c6fbaa4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.143233
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732824980906203648, guid: 896f810578c14e142a1c237f4c6fbaa4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.4045959
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732824980906203648, guid: 896f810578c14e142a1c237f4c6fbaa4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732824980906203648, guid: 896f810578c14e142a1c237f4c6fbaa4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732824980906203648, guid: 896f810578c14e142a1c237f4c6fbaa4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732824980906203648, guid: 896f810578c14e142a1c237f4c6fbaa4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732824980906203648, guid: 896f810578c14e142a1c237f4c6fbaa4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732824980906203648, guid: 896f810578c14e142a1c237f4c6fbaa4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732824980906203648, guid: 896f810578c14e142a1c237f4c6fbaa4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732824980906203648, guid: 896f810578c14e142a1c237f4c6fbaa4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 896f810578c14e142a1c237f4c6fbaa4, type: 3}
 --- !u!1 &169287630
 GameObject:
   m_ObjectHideFlags: 0
@@ -2704,13 +2761,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3932312858489236024, guid: d02a634cd97a3bf469ce8d07d1f15644, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3932312858489236025, guid: d02a634cd97a3bf469ce8d07d1f15644, type: 3}
       propertyPath: m_Name
       value: Cube (2)
       objectReference: {fileID: 0}
     - target: {fileID: 3932312858489236029, guid: d02a634cd97a3bf469ce8d07d1f15644, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3932312858489236029, guid: d02a634cd97a3bf469ce8d07d1f15644, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2945,7 +3006,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1736050780
 GameObject:

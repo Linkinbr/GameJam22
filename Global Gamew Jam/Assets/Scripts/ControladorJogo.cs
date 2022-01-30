@@ -19,6 +19,11 @@ public class ControladorJogo : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+
+    }
+
     public void CarregaCena(string nome)
     {
         SceneManager.LoadScene(nome);

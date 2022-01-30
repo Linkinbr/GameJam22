@@ -7,21 +7,11 @@ public class PlataformaEspecial : MonoBehaviour
     public bool fogo;
     private Material matBase;
     private MeshRenderer mesh;
-    private Collider colisor;
     private void Awake()
     {
         if(TryGetComponent<MeshRenderer>(out mesh))
         {
             matBase = mesh.material;
-        }
-        else
-        {
-            print("Plataforma " + name + " não encontrou mesh");
-        }
-
-        if(!TryGetComponent<Collider>(out colisor))
-        {
-            print("Plataforma "+name+" não encontrou colisor");
         }
     }
 
@@ -33,24 +23,27 @@ public class PlataformaEspecial : MonoBehaviour
 
     public void Ativa(bool value)
     {
-        if(value)
+        if (mesh)
         {
-            print("Ativou " + name);
-            mesh.material = matBase;
-            //colisor.enabled = true;
-        }
-        else
-        {
-            print("Desativou" + name);
-            //colisor.enabled = false;
-
-            if(fogo)
+            if (value)
             {
-                mesh.material = ControladorGeloFogo.instance.matFogo;
+                print("Ativou " + name);
+                mesh.material = matBase;
+                //colisor.enabled = true;
             }
             else
             {
-                mesh.material = ControladorGeloFogo.instance.matGelo;
+                print("Desativou" + name);
+                //colisor.enabled = false;
+
+                if (fogo)
+                {
+                    mesh.material = ControladorGeloFogo.instance.matFogo;
+                }
+                else
+                {
+                    mesh.material = ControladorGeloFogo.instance.matGelo;
+                }
             }
         }
     }

@@ -21,6 +21,8 @@ public class ZonaDaMorte : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        Physics.IgnoreLayerCollision(8, 9);
     }
 
     private void Start()
@@ -38,15 +40,15 @@ public class ZonaDaMorte : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(other.TryGetComponent<Personagem>(out Personagem f))
+        if(collision.collider.TryGetComponent<Personagem>(out Personagem f))
         {
-            ControladorJogo.instance.CarregaCena("Implementacao");
+            ControladorJogo.instance.CarregaCena("Procedural");
         }
         else
         {
-            other.gameObject.SetActive(false);
+            collision.collider.gameObject.SetActive(false);
         }
     }
 
