@@ -42,6 +42,6 @@ Material:
     - _BaseColor: {r: 0, g: 0.14922124, b: 0.6627451, a: 0}
     - _RippleColor: {r: 0, g: 12.108631, b: 27.53272, a: 0}
     - _ShearStrenght: {r: 10, g: 1, b: 0, a: 0}
-    - _WaveSpeed: {r: 0.1, g: 0.1, b: 0, a: 0}
-    - _WaveStrenght: {r: 0.25, g: 0.25, b: 0, a: 0}
+    - _WaveSpeed: {r: 0.08, g: 0.08, b: 0, a: 0}
+    - _WaveStrenght: {r: 0.2, g: 0.2, b: 0, a: 0}
   m_BuildTextureStacks: []
