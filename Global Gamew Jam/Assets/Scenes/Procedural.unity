@@ -358,7 +358,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 248877043}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7, y: 1.6, z: 0}
+  m_LocalPosition: {x: -2.89, y: 1.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1559228031}
@@ -392,7 +392,7 @@ PositionConstraint:
   m_Enabled: 1
   m_Weight: 1
   m_TranslationAtRest: {x: 0, y: 2, z: -20.17}
-  m_TranslationOffset: {x: 7, y: 0.39999998, z: -20.17}
+  m_TranslationOffset: {x: 2.89, y: 0.39999998, z: -20.17}
   m_AffectTranslationX: 0
   m_AffectTranslationY: 1
   m_AffectTranslationZ: 0
@@ -694,8 +694,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidade: 0.4
-  velocidadeIncremento: 0.0225
-  velocidadeMax: 4
+  velocidadeIncremento: 0.015
+  velocidadeMax: 4.25
   matGelo: {fileID: 2100000, guid: 71c47f95ef189e54faff6f1d0e56a4eb, type: 2}
   matFogo: {fileID: 2100000, guid: 6069f74d9a963db4aa697e45a278d75a, type: 2}
   distanciaJogador: 0
@@ -1476,25 +1476,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce45194b81f1dbb4aaac9f0b71e23633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reservaDeSanduiches:
-  - {fileID: 4610995794719498663, guid: ab38b98e4e7e8ba4da0e6f139e797ce1, type: 3}
-  - {fileID: 4610995794719498663, guid: ab38b98e4e7e8ba4da0e6f139e797ce1, type: 3}
+  reservaDeSanduiches: []
   sanduichesFaceis:
   - {fileID: 4610995794719498663, guid: ab38b98e4e7e8ba4da0e6f139e797ce1, type: 3}
+  - {fileID: 7846734077247130675, guid: 533bfca06d2f9224b8c3c93a56b4a8a0, type: 3}
+  - {fileID: 5637697343498902224, guid: 6fbcff041831db6449367ab1454f1b6d, type: 3}
+  - {fileID: 7203899620159431611, guid: f0744b51a5de28b478fe821635ee378d, type: 3}
   - {fileID: 4610995794719498663, guid: ab38b98e4e7e8ba4da0e6f139e797ce1, type: 3}
-  - {fileID: 4610995794719498663, guid: ab38b98e4e7e8ba4da0e6f139e797ce1, type: 3}
-  - {fileID: 4610995794719498663, guid: ab38b98e4e7e8ba4da0e6f139e797ce1, type: 3}
-  - {fileID: 4610995794719498663, guid: ab38b98e4e7e8ba4da0e6f139e797ce1, type: 3}
-  - {fileID: 4610995794719498663, guid: ab38b98e4e7e8ba4da0e6f139e797ce1, type: 3}
-  - {fileID: 4610995794719498663, guid: ab38b98e4e7e8ba4da0e6f139e797ce1, type: 3}
-  - {fileID: 4610995794719498663, guid: ab38b98e4e7e8ba4da0e6f139e797ce1, type: 3}
-  - {fileID: 4610995794719498663, guid: ab38b98e4e7e8ba4da0e6f139e797ce1, type: 3}
-  - {fileID: 4610995794719498663, guid: ab38b98e4e7e8ba4da0e6f139e797ce1, type: 3}
+  - {fileID: 7846734077247130675, guid: 533bfca06d2f9224b8c3c93a56b4a8a0, type: 3}
+  - {fileID: 5637697343498902224, guid: 6fbcff041831db6449367ab1454f1b6d, type: 3}
+  - {fileID: 7203899620159431611, guid: f0744b51a5de28b478fe821635ee378d, type: 3}
   sanduichesMedios:
   - {fileID: 4610995794719498663, guid: ab38b98e4e7e8ba4da0e6f139e797ce1, type: 3}
   - {fileID: 4610995794719498663, guid: ab38b98e4e7e8ba4da0e6f139e797ce1, type: 3}
   - {fileID: 4610995794719498663, guid: ab38b98e4e7e8ba4da0e6f139e797ce1, type: 3}
+  - {fileID: 4610995794719498663, guid: ab38b98e4e7e8ba4da0e6f139e797ce1, type: 3}
+  - {fileID: 4610995794719498663, guid: ab38b98e4e7e8ba4da0e6f139e797ce1, type: 3}
+  - {fileID: 4610995794719498663, guid: ab38b98e4e7e8ba4da0e6f139e797ce1, type: 3}
+  - {fileID: 4610995794719498663, guid: ab38b98e4e7e8ba4da0e6f139e797ce1, type: 3}
+  - {fileID: 4610995794719498663, guid: ab38b98e4e7e8ba4da0e6f139e797ce1, type: 3}
   sanduichesDificeis: []
+  sanduichesAtivos: []
 --- !u!4 &2077383512
 Transform:
   m_ObjectHideFlags: 0
@@ -1538,6 +1540,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14569879a6641e3448e64b51c63f6358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alturaMax: 0
+  alturaAtual: 0
 --- !u!4 &2078438370
 Transform:
   m_ObjectHideFlags: 0

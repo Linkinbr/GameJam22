@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ControladorJogo : MonoBehaviour
 {
     public static ControladorJogo instance;
+    public float alturaMax, alturaAtual;
 
     private void Awake()
     {

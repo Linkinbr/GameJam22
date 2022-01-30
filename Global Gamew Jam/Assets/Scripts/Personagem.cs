@@ -507,13 +507,21 @@ public class Personagem : MonoBehaviour
     void Update()
     {
         Comportamento();
+
         if(temperatura>0.3f)
         {
-            Temperatura -= modTempe * 0.4f * Time.deltaTime;
+            Temperatura -= modTempe * 0.7f * Time.deltaTime;
         }
         else if(temperatura<-0.3f)
         {
-            Temperatura += modTempe * 0.4f * Time.deltaTime;
+            Temperatura += modTempe * 0.7f * Time.deltaTime;
+        }
+
+        ControladorJogo.instance.alturaAtual = transform.position.y;
+
+        if(ControladorJogo.instance.alturaMax<transform.position.y)
+        {
+            ControladorJogo.instance.alturaMax = transform.position.y;
         }
     }
 

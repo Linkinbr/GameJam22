@@ -4,21 +4,32 @@ using UnityEngine;
 
 public class TriggerAtravessaPlataforma : TriggerDePlataforma
 {
-    protected Collider colisorPlataforma;
+    protected Collider[] colisoresPlataforma;
     protected void Start()
     {
-        colisorPlataforma = plataforma.GetComponent<Collider>();
+        colisoresPlataforma = plataforma.GetComponents<Collider>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.TryGetComponent<CharacterController>(out CharacterController character))
-            Physics.IgnoreCollision(character, colisorPlataforma);
+        {
+            foreach(Collider c in colisoresPlataforma)
+            {
+                Physics.IgnoreCollision(character, c);
+            }
+        }
+            
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.TryGetComponent<CharacterController>(out CharacterController character))
-            Physics.IgnoreCollision(character, colisorPlataforma, false);
+        {
+            foreach (Collider c in colisoresPlataforma)
+            {
+                Physics.IgnoreCollision(character, c, false);
+            }
+        }
     }
 }

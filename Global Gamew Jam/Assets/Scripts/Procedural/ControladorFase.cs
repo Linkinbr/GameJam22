@@ -17,7 +17,7 @@ public class ControladorFase : MonoBehaviour
     //3: 50/50 sanduiches médios e difíceis (alternando)
     //4: 100% sanduiches difíceis
     private int numSanduiches=0, sanduichesPorSegmento=8, sanduichesSimultaneos = 5;
-    private Sanduiche[] sanduichesAtivos;
+    public Sanduiche[] sanduichesAtivos;
 
 
     private void Awake()
@@ -36,10 +36,10 @@ public class ControladorFase : MonoBehaviour
 
     private void Start()
     {
-        //sanduichesAtivos = new Sanduiche[sanduichesSimultaneos];
+        sanduichesAtivos = new Sanduiche[sanduichesSimultaneos];
         for (int i = 0; i < sanduichesSimultaneos; i++)
         {
-            PosicionaSanduiche();
+            sanduichesAtivos[i] = PosicionaSanduiche();
         }
     }
 
@@ -92,7 +92,7 @@ public class ControladorFase : MonoBehaviour
     }
 
     /// <summary>Cria um sanduiche no topo da torre baseado na dificuldade atual</summary>
-    private void PosicionaSanduiche()
+    private Sanduiche PosicionaSanduiche()
     {
         List<Sanduiche> deOnde;
 
@@ -129,13 +129,13 @@ public class ControladorFase : MonoBehaviour
         //Se o sanduíche está ativo, quer dizer que é um preFab não instanciado. 
         if(sanduiche.gameObject.activeSelf)
         {
-            Instantiate(sanduiche, posSanduiche, Quaternion.identity);
+            sanduiche = Instantiate(sanduiche, posSanduiche, Quaternion.identity);
         }
         //Se estiver desativo, quer dizer que é uma instância prévia que está sendo reaproveitada.
         else
         {
-            sanduiche.transform.position = posSanduiche;
             sanduiche.ReativaModulos();
+            sanduiche.transform.position = posSanduiche;
         }
         //print("pôs sanduba");
 
@@ -143,10 +143,32 @@ public class ControladorFase : MonoBehaviour
         topoDoUltimoSanduiche += sanduiche.altura;
         numSanduiches++;
         //print("final do rolê");
+
+        return sanduiche;
     }
 
-    private void AceleraZonaDeMorte()
+    public void ChecaProgresso(Vector3 pos)
     {
-        //TODO: Teleportar Zona de Morte um sanduiche para cima e depois "avançar" as salas geradas
+        if(pos == sanduichesAtivos[sanduichesAtivos.Length-2].transform.position)
+        {
+            print("É o penúltimo");
+            if(sanduichesAtivos[0].gameObject.activeInHierarchy)
+            {
+                ZonaDaMorte.instance.transform.position = sanduichesAtivos[0].transform.position;
+                ZonaDaMorte.instance.velocidadeIncremento *= 1.5f;
+            }
+
+            //"Avança" os sanduíches antes de criar um novo na posição liberada (o da posição 0 é esquecido mas isso é ok)
+            for(int i=1; i<sanduichesAtivos.Length; i++)
+            {
+                sanduichesAtivos[i - 1] = sanduichesAtivos[i];
+            }
+
+            sanduichesAtivos[sanduichesAtivos.Length - 1] = PosicionaSanduiche();
+        }
+        else
+        {
+            print("Não é o penúltimo");
+        }
     }
 }
